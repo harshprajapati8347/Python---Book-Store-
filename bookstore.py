@@ -40,6 +40,9 @@ def delete_book():
 def update_book():
     backend.update(select_tup[0], title_text.get(),author_text.get(),year_text.get(), isbn_text.get())
 
+def export_command():
+    backend.export()
+
 window.wm_title("Book Store")
 
 l1 = Label(window, text="Title")
@@ -98,6 +101,12 @@ b5.grid(row=6, column=3)
 
 b6 =Button(window, text= "Close", width=12, command=window.destroy)
 b6.grid(row=7, column=3)
+
+b7 =Button(window, text= "Export", width=12, command=export_command)
+b7.grid(row=8, column=3)
+
+# b8 = Button(window, text="Import from CSV", width=12, command=backend.import_csv)
+# b8.grid(row=9, column=3)
 
 
 window.mainloop()

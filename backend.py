@@ -1,4 +1,6 @@
+import csv
 import sqlite3
+
 
 def connect():
     conn = sqlite3.connect("books.db")
@@ -56,6 +58,22 @@ def update(id, title, author, year, isbn):
     )
     conn.commit()
     conn.close()
+
+
+def export():
+    with open("books.csv", "w") as file:
+        writer = csv.writer(file)
+        writer.writerow(["Title", "Author", "Year", "ISBN"])
+        for row in view():
+            writer.writerow(row)
+
+
+# def import_csv():
+#     with open("books.csv", "r") as file:
+#         reader = csv.reader(file)
+#         next(reader)
+#         for row in reader:
+#             insert(row[0], row[1], row[2], row[3])
 
 
 connect()
